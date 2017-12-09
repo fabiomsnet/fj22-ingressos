@@ -22,7 +22,11 @@ public class SalaDao {
     }
 
     public void save(Sala sala) {
-        manager.persist(sala);
+    	if (sala.getId() == null) {
+    		manager.persist(sala);
+		} else {
+			manager.merge(sala);
+		}
     }
 
     public List<Sala> findAll() {
